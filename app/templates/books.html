@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1> List of books</h1>
+	<style type="text/css">
+		button {
+			width: 100px;
+			height: 15px;
+			border: none;
+			cursor: pointer;
+			display: inline-block;
+			background-color: #4CAF50;
+			text-align: center;
+		}
+	</style>
+	<button type="button" onclick="window.location.href='{{ url_for('add_book') }}';">Add new book</button>
+	{% for b in books %}
+	
+	<div><p><h2>{{ b.title }}</h2></p></div>
+	<div><p>{{ b.description }}</p></div>
+	{% endfor %}
+{% endblock %}

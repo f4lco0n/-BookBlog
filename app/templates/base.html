@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% if title %}
+	<title> {{ title }} - Book Blog</title>
+	{% else %}
+	<title> Welcome to Book Blog!</title>
+	{% endif %}
+
+	<nav>
+		Microblog: 
+		<a href="{{ url_for('index') }}">Home</a>
+		<a href="{{ url_for('show_books') }}">Books</a>
+		<a href="{{ url_for('login') }}">Login</a>
+		<a href="{{ url_for('logout') }}">Logout</a>
+	</nav>
+</head>
+<body>
+
+	<hr>
+	{% with messages = get_flashed_messages() %}
+	{% if messages %}
+	<ul>
+		{% for message in messages %}
+		<li>{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+	{% endwith %}
+	{% block content %}{% endblock %}
+</body>
+</html>
