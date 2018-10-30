@@ -35,6 +35,8 @@ class Book(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	title = db.Column(db.String(255), index=True)
 	description = db.Column(db.String(255))
+	author = db.Column(db.String(255))
+	pages = db.Column(db.Integer)
 	opinions = db.relationship('Opinion', lazy='dynamic')
 
 @login.user_loader

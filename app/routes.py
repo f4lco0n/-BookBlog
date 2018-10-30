@@ -13,20 +13,9 @@ from app.forms import RegistrationForm, AddBookForm
 
 @app.route('/')
 @app.route('/index')
-#@login_required
 def index():
     posts = Opinion.query.all()
-	# user = {'username': 'User'}
-	# posts = [
- #        {
- #            'author': {'username': 'Example 1'},
- #            'body': 'Going to develop this site!'
- #        },
- #        {
- #            'author': {'username': 'Example 2'},
- #            'body': 'Still learning!'
- #        }
- #    ]
+
     
     return render_template('index.html', title='Home', posts=posts)   #,posts=posts) return site's view
 
@@ -52,7 +41,13 @@ def login():
 @app.route('/show_books', methods=['GET', 'POST'])
 def show_books():
     books = Book.query.all()
-    return render_template('books.html', title='Home', books=books)
+    return render_template('books.html', books=books)
+
+
+@app.route('/detail_book/<title>')
+def detail_book(title):
+    book = Book.query.filter_by(title=title).first_or_404()
+    return render_template('detail_book.html', book=book)
 
 
 

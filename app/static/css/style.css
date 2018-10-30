@@ -1,0 +1,19 @@
+body {
+	background-color: grey;
+}
+
+#book-container {
+	text-align: center;
+	background-color: #b5b9bf;
+}
+
+h1 {
+	text-align: center;
+}
+
+button {
+	margin-left: ;
+	text-align: center;
+	background-color: #b5b9bf;
+	margin-left: 40%;
+}
