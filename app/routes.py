@@ -9,6 +9,7 @@ from flask import request
 from werkzeug.urls import url_parse
 from app import db
 from app.forms import RegistrationForm, AddBookForm
+from sqlalchemy import and_
 
 
 @app.route('/')
@@ -17,7 +18,7 @@ def index():
     posts = Opinion.query.all()
 
     
-    return render_template('index.html', title='Home', posts=posts)   #,posts=posts) return site's view
+    return render_template('index.html', title='Home', posts=posts) 
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -47,8 +48,9 @@ def show_books():
 @app.route('/detail_book/<title>')
 def detail_book(title):
     book = Book.query.filter_by(title=title).first_or_404()
-    return render_template('detail_book.html', book=book)
-
+    result = db.session.query(Book.id, Opinion.body).filter(Opinion.book_id==book.id).filter(and_(Book.title == title)).all()
+    return render_template('detail_book.html', book=book, result=result)
+#https://stackoverflow.com/questions/34688555/sqlalchemy-how-to-query-3-tables-with-association-table
 
 
 

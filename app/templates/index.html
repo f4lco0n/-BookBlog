@@ -1,8 +1,34 @@
-{% extends "base.html" %}
+{% extends "bootstrap/base.html" %}
 
 {% block content%}
-	<h1> Simple website created in Python and Flask. The new functionalities will be added soon </h1>
-	{% for post in posts%}
-	<div><p>{{ post.author.username}} says: <b>{{ post.body}}</b></p></div>
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link active" href="{{ url_for('index') }}">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('show_books') }}">Books</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+  </li>
+
+</ul>
+
+<div class="card text-center">
+  <div class="card-header">
+    <span class="badge badge-secondary"><center><h1> Simple website created in Python and Flask. The new functionalities will be added soon </h1></center></span>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Recent comments</h5>
+    <p class="card-text">
+    {% for post in posts%}
+		<div><p>{{ post.author.username}} says: <b>{{ post.body}}</b></p></div>
 	{% endfor %}
+    </p>
+  </div>
+</div>
+
 {% endblock %}

@@ -7,6 +7,9 @@
     <div><p>{{ book.description }}</p></div>
     <div><p><h6>pages: </h6> {{ book.pages }}</p></div>
     <br>
+    {% for r in result %}
+		<li>{{ r.body }}</li>
+	{% endfor %}
 </div>
 
 
