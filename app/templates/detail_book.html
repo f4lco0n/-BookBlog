@@ -1,16 +1,72 @@
-{% extends "base.html" %}
+{% extends "bootstrap/base.html" %}
+
 
 {% block content %}
-<div id="book-container">
-    <h2>{{ book.title }}</h2>
-    <div><p><h6>author:</h6> {{ book.author }}</p></div>
-    <div><p>{{ book.description }}</p></div>
+
+   <ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link active" href="{{ url_for('index') }}">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('show_books') }}">Books</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+  </li>
+
+</ul>
+
+<div class="card text-center">
+  <div class="card-header">
+    <span class="badge badge-secondary"><h2>{{ book.title }}</h2></span>
+  </div>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+  Add opinion
+</button>
+  </div>
+
+  <center>
+    <div><p><h6>author: </h6>{{ book.author }}</p></div>
+    <div><p><h6>description:</h6>{{ book.description }}</p></div>
     <div><p><h6>pages: </h6> {{ book.pages }}</p></div>
     <br>
+    <div><p>Opinions
+
     {% for r in result %}
-		<li>{{ r.body }}</li>
+		<p>{{ r.body }}
 	{% endfor %}
+</p></div>
+</center>
+
+
+<!-- MODAL FORM-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Your opinion about {{ book.title }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" href="#" data-role="add">Send opinion</button>
+      </div>
+    </div>
+  </div>
 </div>
-
-
+<!-- END MODAL FORM -->
 {% endblock %}
+
