@@ -1,25 +1,23 @@
-{% extends "bootstrap/base.html" %}
+{% extends "base.html" %}
 
 
 {% block content %}
-<ul class="nav nav-pills">
-  <li class="nav-item">
-    <a class="nav-link active" href="{{ url_for('index') }}">Home</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="{{ url_for('show_books') }}">Books</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="{{ url_for('login') }}">Login</a>
-  </li>
-    <li class="nav-item">
-    <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
-  </li>
 
-</ul>
-   
-	<h1>Sign In</h1>
+
+<center>Sign In</center>
+
+<!-- <form action="/login" method="post" >
+<div class="login">
+    <input type="text" placeholder="Username" id="username" name="username">  
+
+  <input type="password" placeholder="password" id="password" name="password">  
+  <input type="submit" value="Sign In">
+</div>
+<div class="shadow"></div>
+</form> -->
+	
 	<form action="" method="post" novalidate>
+		<div class="login">
 		{{ form.hidden_tag() }}
 		<p>
 			{{ form.username.label }}<br>
@@ -35,9 +33,10 @@
 			<span style="color: red;">[{{ error }}]</span>
 			{% endfor %}
 		</p>
-		<p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
 		<p>{{ form.submit() }}</p>
-	</form>
-	<p>New User? <a href="{{ url_for('register') }}">Click to Register!</a></p>
+	</div>
+	<div class="shadow"></div>
+</form>
+
 {% endblock%}
 		

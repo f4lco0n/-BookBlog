@@ -1,8 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Register</h1>
-    <form action="" method="post">
+
+
+<center>Register</center>
+
+<!-- <form method="post" novalidate>
+<div class="register">
+    <input type="text" placeholder="username" id="username" name="username">  
+    <input type="password" placeholder="password" id="password" name="password">
+    <input type="password" placeholder="repeat password" id="password2" name="password2">
+    <input type="email" placeholder="email" id="email" name="email">
+    <input type="submit" value="Register">
+</div>
+<div class="shadow"></div>
+</form> -->
+
+  <form action="" method="post">
+  	<div class="register">
         {{ form.hidden_tag() }}
         <p>
             {{ form.username.label }}<br>
@@ -33,5 +48,7 @@
             {% endfor %}
         </p>
         <p>{{ form.submit() }}</p>
-    </form>
+    </div>
+    <div class="shadow"></div>
+</form>
 {% endblock %}

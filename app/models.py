@@ -33,11 +33,18 @@ class Opinion(db.Model):
 
 class Book(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	category = db.relationship('Category', lazy='dynamic')
 	title = db.Column(db.String(255), index=True)
 	description = db.Column(db.String(255))
 	author = db.Column(db.String(255))
 	pages = db.Column(db.Integer)
 	opinions = db.relationship('Opinion', lazy='dynamic')
+
+
+class Category(db.Model):
+	id = db.Column(db.Integer,primary_key=True)
+	category_name = db.Column(db.String(255))
+	book_id = db.Column(db.Integer, db.ForeignKey('book.id'))
 
 @login.user_loader
 def load_user(id):

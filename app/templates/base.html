@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}"/>
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/base.css')}}"/> 
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/books.css')}}"/> 
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/login.css')}}"/> 
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/register.css')}}"/> 
 	{% if title %}
 	<title> {{ title }} - Book Blog</title>
 	{% else %}
 	<title> Welcome to Book Blog!</title>
 	{% endif %}
-
-	<nav>
-		Microblog: 
+</head>
+<body>
+<div class="bg">
+	<div class="topnav">
 		<a href="{{ url_for('index') }}">Home</a>
 		<a href="{{ url_for('show_books') }}">Books</a>
 		<a href="{{ url_for('login') }}">Login</a>
 		<a href="{{ url_for('logout') }}">Logout</a>
-	</nav>
-</head>
-<body>
+		<input type="text" placeholder="Search..">
+	</div>
 
-	<hr>
 	{% with messages = get_flashed_messages() %}
 	{% if messages %}
 	<ul>
@@ -28,6 +30,18 @@
 	</ul>
 	{% endif %}
 	{% endwith %}
-	{% block content %}{% endblock %}
+
+	<div class="main-content">
+		{% block content %}{% endblock %}
+	</div>
+
+<div class="footer">
+  <p>Footer</p>
+</div>
+</div>
+
+
+
+
 </body>
 </html>

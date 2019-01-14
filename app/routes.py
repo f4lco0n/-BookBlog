@@ -3,7 +3,7 @@ from app import app
 from app.forms import LoginForm
 from flask_login import current_user, login_user
 from flask_login import logout_user
-from app.models import User, Opinion, Book
+from app.models import User, Opinion, Book, Category
 from flask_login import login_required
 from flask import request, make_response
 from werkzeug.urls import url_parse
@@ -30,7 +30,7 @@ def login():
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
             return redirect(url_for('login'))
-        login_user(user, remember=form.remember_me.data)
+        login_user(user)
         
         userCookie = request.form['username']
         resp = make_response(render_template('index.html'))
@@ -41,13 +41,13 @@ def login():
             next_page = url_for('index')
             return resp
         return redirect(next_page)
-    return render_template('login.html', title='Sign In', form=form)    
+    return render_template('login.html', title='Sign In', form=form) 
 
 
 @app.route('/show_books', methods=['GET', 'POST'])
 def show_books():
     books = Book.query.all()
-    return render_template('books.html', books=books)
+    return render_template('books.html', title='Books', books=books)
 
 
 @app.route('/detail_book/<title>')
@@ -67,7 +67,6 @@ def add_book():
                             author=form.author.data, pages=form.pages.data)
             db.session.add(added_book)
             db.session.commit()
-            flash('Book has been added')
             return redirect(url_for('show_books'))
 
         return render_template('add_books.html', title='Add Book', form=form)
